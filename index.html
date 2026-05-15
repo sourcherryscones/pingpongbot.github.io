@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>[PROJECT TITLE] · UC Berkeley EECS 106A</title>
+  <meta name="description" content="[ONE-SENTENCE PROJECT DESCRIPTION]" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- KaTeX for math (optional — remove if you don't need equations) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ============ STICKY NAV ============ -->
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="#top" class="nav-brand">
+        <span class="dot"></span>
+        <span>[PROJECT TITLE]</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#design">Design</a></li>
+        <li><a href="#implementation">Implementation</a></li>
+        <li><a href="#results">Results</a></li>
+        <li><a href="#conclusion">Conclusion</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#materials">Materials</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <header id="top" class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">UC Berkeley · EECS 106A · Spring 2026</p>
+      <h1 class="hero-title">[PROJECT TITLE]</h1>
+      <p class="hero-subtitle">
+        [ONE-LINE TAGLINE — e.g., "A UR7e robotic arm that learns to rally."]
+      </p>
+      <div class="hero-meta">
+        <span class="chip">UR7e</span>
+        <span class="chip">Perception</span>
+        <span class="chip">Control</span>
+        <span class="chip">ROS 2</span>
+      </div>
+    </div>
+    <div class="hero-figure" aria-hidden="true">
+      <!-- Decorative SVG: minimalist paddle + ball motion -->
+      <svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0%" stop-color="var(--accent)" stop-opacity="0.18"/>
+            <stop offset="100%" stop-color="var(--accent)" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <!-- table line -->
+        <line x1="40" y1="240" x2="560" y2="240" stroke="currentColor" stroke-width="1" stroke-opacity="0.25"/>
+        <!-- arc -->
+        <path d="M 60 230 Q 280 60 540 200" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="4 6"/>
+        <!-- ball positions along the arc -->
+        <circle cx="60"  cy="230" r="6" fill="var(--accent)"/>
+        <circle cx="180" cy="140" r="6" fill="var(--accent)" fill-opacity="0.6"/>
+        <circle cx="300" cy="98"  r="6" fill="var(--accent)" fill-opacity="0.6"/>
+        <circle cx="420" cy="130" r="6" fill="var(--accent)" fill-opacity="0.6"/>
+        <circle cx="540" cy="200" r="6" fill="var(--accent)"/>
+        <!-- shaded ground -->
+        <rect x="40" y="240" width="520" height="60" fill="url(#g1)"/>
+      </svg>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============ 01 INTRODUCTION ============ -->
+    <section id="introduction" class="section">
+      <p class="section-num">01</p>
+      <h2 class="section-title">Introduction</h2>
+
+      <div class="block">
+        <h3>End goal</h3>
+        <p>[PLACEHOLDER: Describe the end goal of your project. What does the system actually do — e.g., return a ball served from a fixed launcher, sustain a rally with a human, etc.?]</p>
+      </div>
+
+      <div class="block">
+        <h3>Why this is interesting</h3>
+        <p>[PLACEHOLDER: Explain what makes ping-pong an interesting problem. Touch on the high-speed perception, the dynamics of spin and bounce, the timing/latency constraints, the coordination between vision and control.]</p>
+      </div>
+
+      <div class="block">
+        <h3>Real-world applications</h3>
+        <p>[PLACEHOLDER: Where could the techniques used here transfer in the real world? Dynamic manipulation, human-robot interaction, fast reactive control, sports training, prosthetics, agile pick-and-place at speed.]</p>
+      </div>
+    </section>
+
+    <!-- ============ 02 DESIGN ============ -->
+    <section id="design" class="section">
+      <p class="section-num">02</p>
+      <h2 class="section-title">Design</h2>
+
+      <div class="block">
+        <h3>Design criteria &amp; desired functionality</h3>
+        <p>[PLACEHOLDER: List the criteria your project had to meet — latency budget, workspace coverage, reachable ball speeds, accuracy of paddle pose at contact, safety constraints, etc.]</p>
+        <ul class="criteria">
+          <li><strong>[Criterion 1]:</strong> [why it matters]</li>
+          <li><strong>[Criterion 2]:</strong> [why it matters]</li>
+          <li><strong>[Criterion 3]:</strong> [why it matters]</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h3>The design we chose</h3>
+        <p>[PLACEHOLDER: Describe the high-level architecture you settled on. A diagram is ideal here.]</p>
+        <figure class="figure">
+          <div class="figure-placeholder">[INSERT SYSTEM DIAGRAM — perception → planning → control → actuation]</div>
+          <figcaption>Figure 1. System block diagram.</figcaption>
+        </figure>
+      </div>
+
+      <div class="block">
+        <h3>Trade-offs</h3>
+        <p>[PLACEHOLDER: What did you give up to gain something else? E.g., vision FPS vs. latency, model-based control vs. learned policies, simulation fidelity vs. iteration speed.]</p>
+        <div class="tradeoff-grid">
+          <div class="tradeoff">
+            <h4>[Trade-off A]</h4>
+            <p>[Chose X over Y because…]</p>
+          </div>
+          <div class="tradeoff">
+            <h4>[Trade-off B]</h4>
+            <p>[Chose X over Y because…]</p>
+          </div>
+          <div class="tradeoff">
+            <h4>[Trade-off C]</h4>
+            <p>[Chose X over Y because…]</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block">
+        <h3>Robustness, durability, efficiency</h3>
+        <p>[PLACEHOLDER: How would these choices play out in a real engineering context — failure modes, repeatability across sessions, compute/energy efficiency, maintenance.]</p>
+      </div>
+    </section>
+
+    <!-- ============ 03 IMPLEMENTATION ============ -->
+    <section id="implementation" class="section">
+      <p class="section-num">03</p>
+      <h2 class="section-title">Implementation</h2>
+
+      <!-- Hardware -->
+      <div class="block">
+        <h3>Hardware</h3>
+        <p>[PLACEHOLDER: Describe the robot, sensors, end-effector, mounts, table setup. Include real photos when you have them.]</p>
+
+        <div class="image-grid">
+          <figure class="figure">
+            <div class="figure-placeholder">[PHOTO: full setup overview]</div>
+            <figcaption>Figure 2. Workcell overview.</figcaption>
+          </figure>
+          <figure class="figure">
+            <div class="figure-placeholder">[PHOTO: end-effector / paddle mount]</div>
+            <figcaption>Figure 3. Paddle end-effector.</figcaption>
+          </figure>
+        </div>
+
+        <h4>Parts list</h4>
+        <table class="parts">
+          <thead>
+            <tr><th>Component</th><th>Spec / Model</th><th>Purpose</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Robot arm</td><td>Universal Robots UR7e</td><td>Primary manipulator</td></tr>
+            <tr><td>[Camera]</td><td>[Model]</td><td>[Ball tracking]</td></tr>
+            <tr><td>[Paddle / mount]</td><td>[Custom CAD]</td><td>[End-effector]</td></tr>
+            <tr><td>[Compute]</td><td>[Model]</td><td>[Vision / control]</td></tr>
+            <tr><td>[Add rows as needed]</td><td></td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Software -->
+      <div class="block">
+        <h3>Software</h3>
+        <p>[PLACEHOLDER: Describe each major software component — perception pipeline, trajectory planner, controller, ROS 2 nodes, simulation. Mention launch files, URDFs, and how they interconnect.]</p>
+
+        <figure class="figure">
+          <div class="figure-placeholder">[INSERT SOFTWARE FLOWCHART / ROS GRAPH]</div>
+          <figcaption>Figure 4. Software architecture and ROS 2 node graph.</figcaption>
+        </figure>
+
+        <h4>Example: control law</h4>
+        <p>If you want to drop equations in, KaTeX is wired up. Inline like $\dot{q} = J^{\dagger}(q)\,\dot{x}_{\text{desired}}$, or display style:</p>
+        <p>$$ \tau = M(q)\ddot{q} + C(q,\dot{q})\dot{q} + g(q) $$</p>
+      </div>
+
+      <!-- End-to-end -->
+      <div class="block">
+        <h3>How the complete system works</h3>
+        <ol class="steps">
+          <li><strong>[Step 1 — Perception]:</strong> [PLACEHOLDER]</li>
+          <li><strong>[Step 2 — Prediction]:</strong> [PLACEHOLDER]</li>
+          <li><strong>[Step 3 — Planning]:</strong> [PLACEHOLDER]</li>
+          <li><strong>[Step 4 — Control]:</strong> [PLACEHOLDER]</li>
+          <li><strong>[Step 5 — Recovery / loop]:</strong> [PLACEHOLDER]</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ 04 RESULTS ============ -->
+    <section id="results" class="section">
+      <p class="section-num">04</p>
+      <h2 class="section-title">Results</h2>
+
+      <div class="block">
+        <h3>What it did</h3>
+        <p>[PLACEHOLDER: Summarize what the system actually achieved. Be specific.]</p>
+
+        <div class="metric-row">
+          <div class="metric">
+            <div class="metric-num">[XX%]</div>
+            <div class="metric-label">[e.g., return success rate]</div>
+          </div>
+          <div class="metric">
+            <div class="metric-num">[XX ms]</div>
+            <div class="metric-label">[end-to-end latency]</div>
+          </div>
+          <div class="metric">
+            <div class="metric-num">[XX m/s]</div>
+            <div class="metric-label">[max ball speed handled]</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="block">
+        <h3>Video</h3>
+        <div class="video-wrap">
+          <!-- Replace VIDEO_ID with your YouTube video ID -->
+          <iframe
+            src="https://www.youtube.com/embed/VIDEO_ID"
+            title="Project demo video"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        </div>
+        <p class="caption">Replace <code>VIDEO_ID</code> in <code>index.html</code> with your YouTube ID.</p>
+      </div>
+
+      <div class="block">
+        <h3>Gallery</h3>
+        <div class="image-grid">
+          <figure class="figure"><div class="figure-placeholder">[RESULT IMAGE 1]</div></figure>
+          <figure class="figure"><div class="figure-placeholder">[RESULT IMAGE 2]</div></figure>
+          <figure class="figure"><div class="figure-placeholder">[RESULT IMAGE 3]</div></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 05 CONCLUSION ============ -->
+    <section id="conclusion" class="section">
+      <p class="section-num">05</p>
+      <h2 class="section-title">Conclusion</h2>
+
+      <div class="block">
+        <h3>Discussion</h3>
+        <p>[PLACEHOLDER: How well did the finished solution meet your design criteria? Be candid about what worked and what didn't.]</p>
+      </div>
+
+      <div class="block">
+        <h3>Difficulties</h3>
+        <p>[PLACEHOLDER: What was unexpectedly hard? Calibration, networking, latency, hardware quirks, sim-to-real gap…]</p>
+      </div>
+
+      <div class="block">
+        <h3>Flaws, hacks, and future work</h3>
+        <p>[PLACEHOLDER: Where would you go next with more time? Mention any hacks or shortcuts in the current implementation honestly.]</p>
+      </div>
+    </section>
+
+    <!-- ============ 06 TEAM ============ -->
+    <section id="team" class="section">
+      <p class="section-num">06</p>
+      <h2 class="section-title">Team</h2>
+
+      <div class="team-grid">
+        <!-- Member card template — duplicate for each teammate -->
+        <article class="member">
+          <div class="avatar">[PHOTO]</div>
+          <h3>[Member Name]</h3>
+          <p class="role">[Major · Year]</p>
+          <p class="bio">[Short bio — 2–3 sentences about background and interests.]</p>
+          <p class="contributions"><strong>Contributions:</strong> [What this member led / built / wrote.]</p>
+        </article>
+
+        <article class="member">
+          <div class="avatar">[PHOTO]</div>
+          <h3>[Member Name]</h3>
+          <p class="role">[Major · Year]</p>
+          <p class="bio">[Short bio.]</p>
+          <p class="contributions"><strong>Contributions:</strong> [Their contributions.]</p>
+        </article>
+
+        <article class="member">
+          <div class="avatar">[PHOTO]</div>
+          <h3>[Member Name]</h3>
+          <p class="role">[Major · Year]</p>
+          <p class="bio">[Short bio.]</p>
+          <p class="contributions"><strong>Contributions:</strong> [Their contributions.]</p>
+        </article>
+
+        <article class="member">
+          <div class="avatar">[PHOTO]</div>
+          <h3>[Member Name]</h3>
+          <p class="role">[Major · Year]</p>
+          <p class="bio">[Short bio.]</p>
+          <p class="contributions"><strong>Contributions:</strong> [Their contributions.]</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ 07 ADDITIONAL MATERIALS ============ -->
+    <section id="materials" class="section">
+      <p class="section-num">07</p>
+      <h2 class="section-title">Additional materials</h2>
+
+      <div class="resource-grid">
+        <a class="resource" href="[GITHUB_REPO_URL]" target="_blank" rel="noopener">
+          <h3>Source code</h3>
+          <p>Full project repository — perception, planning, control, ROS 2 packages.</p>
+        </a>
+        <a class="resource" href="[CAD_LINK]" target="_blank" rel="noopener">
+          <h3>CAD models</h3>
+          <p>Paddle mount, fixtures, and any custom 3D-printed parts.</p>
+        </a>
+        <a class="resource" href="[URDF_LINK]" target="_blank" rel="noopener">
+          <h3>URDF &amp; launch files</h3>
+          <p>Robot description and ROS 2 launch configurations.</p>
+        </a>
+        <a class="resource" href="[DATASHEETS_LINK]" target="_blank" rel="noopener">
+          <h3>Datasheets</h3>
+          <p>Spec sheets for the camera, robot, and any other off-the-shelf components.</p>
+        </a>
+        <a class="resource" href="[EXTRA_VIDEOS_LINK]" target="_blank" rel="noopener">
+          <h3>Additional videos</h3>
+          <p>Bloopers, debugging clips, alternate runs, and longer demos.</p>
+        </a>
+        <a class="resource" href="[DATA_LINK]" target="_blank" rel="noopener">
+          <h3>Data &amp; logs</h3>
+          <p>Trajectories, training curves, and evaluation runs.</p>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p>[PROJECT TITLE] · UC Berkeley EECS 106A · Spring 2026</p>
+      <p class="muted">Built with plain HTML, CSS, and JavaScript. Hosted on GitHub Pages.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
