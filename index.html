@@ -232,6 +232,13 @@
           <figcaption>Figure 4. Software architecture and ROS 2 node graph.</figcaption>
         </figure>
 
+        <h4>Ball detection</h4>
+        <ul>
+          <li><strong>HSV filtering:</strong> We convert each frame to HSV color space and threshold it to isolate the green ping pong ball, then grab the largest blob and check how circular it is, throwing out anything that looks more like background clutter or bad detections.</li>
+          <li><strong>Depth from known radius:</strong> Depth comes entirely from how big the ball looks in the frame. Since we know the physical size of a ping pong ball, we can use the pinhole camera model to back out how far away it is. The tricky part is that motion blur stretches the ball's outline along the direction it's moving, which makes the apparent radius look bigger than it really is and throws off the depth estimate. We fixed this by computing the radius from the contour area instead of the contour boundary, which turns out to be much more stable.</li>
+          <li><strong>Hardware tuning:</strong> The biggest improvements to perception had nothing to do with the algorithm. Just turning down the camera exposure made an enormous difference. At lower exposure the ball stays sharp even when it's moving fast, which means cleaner outlines, better radius estimates, and more accurate depth. We also spent a lot of time tuning resolution and framerate, and landed on 720p at 60fps as the sweet spot for our setup. For our project getting the hardware right was by far the hardest part, and this meant we spent a lot of time on perception.</li>
+        </ul>
+
         <h4>Paddle controller</h4>
         <p>Once an interception target is computed, the paddle controller takes over:</p>
         <ul>
