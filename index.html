@@ -318,17 +318,17 @@
 
       <div class="block">
         <h3>Discussion</h3>
-        <p>[PLACEHOLDER: How well did the finished solution meet your design criteria? Be candid about what worked and what didn't.]</p>
+        <p>The finished system came reasonably close to our design goals. The robot can estimate a ball trajectory and move the arm to the predicted interception point. Reliability, though, is a different story. Depth estimation from camera area calculations is inherently noisy, and that noise propagates through to the trajectory estimate. We switched from a standard ping-pong ball to a larger stress ball roughly twice the size, which gave the HSV mask more pixels to work with and meaningfully improved consistency. At our best, we hit three balls in a row, and two in a row was fairly common. But shot-to-shot variance remained high, mostly tracing back to the camera.</p>
       </div>
 
       <div class="block">
         <h3>Difficulties</h3>
-        <p>[PLACEHOLDER: What was unexpectedly hard? Calibration, networking, latency, hardware quirks, sim-to-real gap…]</p>
+        <p>The biggest surprise was how poorly the Intel RealSense performed for this use case. We expected noisy depth readings, but not to the degree we saw. It couldn't acquire enough points in the short window before the ball left the frame, motion blur added additional error, and the 30 fps cap in depth mode made the problem worse. We spent a lot of time here before switching to area-based depth estimation with the Logitech camera. Once we moved past perception, things went fairly smoothly. The controller worked well, and trajectory estimation was reasonable once the depth signal improved.</p>
       </div>
 
       <div class="block">
         <h3>Flaws, hacks, and future work</h3>
-        <p>[PLACEHOLDER: Where would you go next with more time? Mention any hacks or shortcuts in the current implementation honestly.]</p>
+        <p>The biggest shortcut in the current implementation is that the robot is a blocker, not a hitter. It moves to the interception point and stops there, so the ball bounces off a stationary paddle. A real ping-pong shot requires the paddle to be moving through the ball at contact so it actually returns with speed. To do that properly, the robot would need to start from a further-back ready position and swing through an interception plane rather than just parking at one. We ran out of time to get there, but that is the clearest path to a system that can actually rally.</p>
       </div>
     </section>
 
