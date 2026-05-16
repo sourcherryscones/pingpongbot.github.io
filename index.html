@@ -132,12 +132,13 @@
 
       <div class="block">
         <h3>Design criteria &amp; desired functionality</h3>
-        <p>[PLACEHOLDER: List the criteria your project had to meet — latency budget, workspace coverage, reachable ball speeds, accuracy of paddle pose at contact, safety constraints, etc.]</p>
+        <p>The core goal was a robot that could detect a ball being tossed, estimate where it was going, and move the arm there in time to intercept it. That breaks down into three concrete criteria:</p>
         <ul class="criteria">
-          <li><strong>[Criterion 1]:</strong> [why it matters]</li>
-          <li><strong>[Criterion 2]:</strong> [why it matters]</li>
-          <li><strong>[Criterion 3]:</strong> [why it matters]</li>
+          <li><strong>Reliable ball detection:</strong> The vision pipeline needs to find the ball consistently across enough frames to fit a trajectory. Too few detections and the estimate falls apart.</li>
+          <li><strong>Low enough end-to-end latency:</strong> Detection, trajectory estimation, IK, and arm movement all have to complete before the ball arrives. Every step in the pipeline eats into that budget.</li>
+          <li><strong>Interception accuracy:</strong> The arm has to actually end up at the right place. A good trajectory estimate is useless if the IK solution or the arm movement puts the paddle somewhere else.</li>
         </ul>
+        <p>Our stretch goal was a true return: paddle moving through the ball at contact so it comes back. We got to reliable interception but not to a true system that can rally a ball back.</p>
       </div>
 
       <div class="block">
@@ -182,8 +183,8 @@
       </div>
 
       <div class="block">
-        <h3>Robustness, durability, efficiency</h3>
-        <p>[PLACEHOLDER: How would these choices play out in a real engineering context — failure modes, repeatability across sessions, compute/energy efficiency, maintenance.]</p>
+        <h3>Reliability</h3>
+        <p>[PLACEHOLDER]</p>
       </div>
     </section>
 
@@ -256,9 +257,8 @@
         <ol class="steps">
           <li><strong>[Step 1 — Perception]:</strong> [PLACEHOLDER]</li>
           <li><strong>[Step 2 — Prediction]:</strong> [PLACEHOLDER]</li>
-          <li><strong>[Step 3 — Planning]:</strong> [PLACEHOLDER]</li>
-          <li><strong>[Step 4 — Control]:</strong> [PLACEHOLDER]</li>
-          <li><strong>[Step 5 — Recovery / loop]:</strong> [PLACEHOLDER]</li>
+          <li><strong>[Step 3 — Planning and control]:</strong> The interception target is passed to the paddle controller, which runs IK to get joint angles for the target pose and sends them directly to the robot.</li>
+          <li><strong>[Step 5 — Ready for next ball]:</strong> Once the arm reaches the interception point and stops, the controller marks itself idle and waits for the next interception target. There is no return-to-ready move; the arm stays where it landed.</li>
         </ol>
       </div>
     </section>
@@ -272,20 +272,6 @@
         <h3>What it did</h3>
         <p>The system successfully detects a green stress ball being tossed in front of the robot, estimates where the ball is heading, and moves the arm to the predicted interception point in time to block it. The full pipeline runs in real time: HSV detection feeds into trajectory estimation, which publishes an interception target, and the arm moves there.</p>
 
-        <div class="metric-row">
-          <div class="metric">
-            <div class="metric-num">[XX%]</div>
-            <div class="metric-label">[e.g., return success rate]</div>
-          </div>
-          <div class="metric">
-            <div class="metric-num">[XX ms]</div>
-            <div class="metric-label">[end-to-end latency]</div>
-          </div>
-          <div class="metric">
-            <div class="metric-num">[XX m/s]</div>
-            <div class="metric-label">[max ball speed handled]</div>
-          </div>
-        </div>
       </div>
 
       <div class="block">
@@ -334,12 +320,12 @@
     </section>
 
     <!-- ============ 06 TEAM ============ -->
+    <!--
     <section id="team" class="section">
       <p class="section-num">06</p>
       <h2 class="section-title">Team</h2>
 
       <div class="team-grid">
-        <!-- Member card template — duplicate for each teammate -->
         <article class="member">
           <div class="avatar">[PHOTO]</div>
           <h3>[Member Name]</h3>
@@ -373,6 +359,7 @@
         </article>
       </div>
     </section>
+    -->
 
     <!-- ============ 07 ADDITIONAL MATERIALS ============ -->
     <section id="materials" class="section">
