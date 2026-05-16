@@ -146,6 +146,20 @@
           <div class="figure-placeholder">[INSERT SYSTEM DIAGRAM — perception → planning → control → actuation]</div>
           <figcaption>Figure 1. System block diagram.</figcaption>
         </figure>
+        <p>
+          Our project's general pipeline is as follows:
+          <ul>
+            <li>
+              Perception. We take raw camera input and apply a HSV filter to it in order to detect our green ping-pong ball. Once this is complete, we estimate its depth by comparing the size of the ball to its true known size, and can thus obtain (x,y,z) coordinates for where the ball is in the camera frame (and calculate rough (v_x, v_y, v_z) between frames). We publish these coordinates.
+            </li>
+            <li>
+              Estimation. We take those coordinates that perception is publishing and use em to approximate the trajectory of the ping-pong ball! Mathematically this is very simple: we just use least squares quadratic fit on the z-axis and linear fit for the x and y axes (as per basic kinematics for projectile motion). Given this and a pre-decided "intercept plane" near the end-effector's tuck position, we find where our 3D inters
+            </li>
+            <li>
+              Control. Once we've received an intercept point from the previous module, we compute the IK solution to move the UR7e from its current position to the desired location so that it can successfully hit the ball :)
+            </li>
+          </ul>
+        </p>
       </div>
 
       <div class="block">
@@ -222,7 +236,7 @@
         <h4>Paddle controller</h4>
         <p>Once an interception target is computed, the paddle controller takes over:</p>
         <ul>
-          <li><strong>Inverse kinematics:</strong> Joint angles are solved using the IK solver from the 106A lab. Given the target Cartesian pose, it returns the required joint configuration.</li>
+          <li><strong>Inverse kinematics:</strong> Joint angles are solved using the IK solver (from the lab we did!). Given the target Cartesian pose, it returns the required joint configuration.</li>
           <li><strong>No motion planning:</strong> To minimize latency, we skip motion planning entirely and send joint targets directly to the robot.</li>
           <li><strong>Direct trajectory dispatch:</strong> The joint target is sent straight to the UR7e's <code>scaled_joint_trajectory_controller</code> via a FollowJointTrajectory action.</li>
           <li><strong>Time parameterization:</strong> The UR7e executes a move by following a trajectory with a fixed end time. We compute the shortest time that is physically achievable by modeling each joint with either a triangular or trapezoidal velocity profile, based on the rated joint speed and acceleration limits. The slowest joint sets the overall duration, and that value gets passed as the <code>time_from_start</code> in the trajectory point.</li>
