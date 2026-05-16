@@ -272,10 +272,11 @@
       <div class="block">
         <h3>How the complete system works</h3>
         <ol class="steps">
-          <li><strong>[Step 1 — Perception]:</strong> [PLACEHOLDER]</li>
-          <li><strong>[Step 2 — Prediction]:</strong> [PLACEHOLDER]</li>
-          <li><strong>[Step 3 — Planning and control]:</strong> The interception target is passed to the paddle controller, which runs IK to get joint angles for the target pose and sends them directly to the robot.</li>
-          <li><strong>[Step 5 — Ready for next ball]:</strong> Once the arm reaches the interception point and stops, the controller marks itself idle and waits for the next interception target. There is no return-to-ready move; the arm stays where it landed.</li>
+          <li><strong>[Step 0 - Setup]: Start by making sure you've plugged in the camera, distrobox entered ros2, colcon built, etc.</strong></li>
+          <li><strong>[Step 1 — Perception]:</strong> Launch the usb_cam custom.launch.py that contains our custom exposure settings</li>
+          <li><strong>[Step 2 — Prediction]:</strong> Launch perception.launch.py, which will run our ball_detector node and should start publishing BallStates. If you want to see our super awesome tool we used for HSV tuning and looking at the 3D position of the ball we were computing from the image, run debug_perception.launch.py too!</li>
+          <li><strong>[Step 3 — Estimation]:</strong> Launch estimation.launch.py, which will run our trajectory_estimator node. Also run debug_estimation.launch.py as that will allow you to visualize the hit plane, points detected and used in the trajectory, and the trajectory itself in Rviz.</li>
+          <li><strong>[Step 3 — Planning and control]:</strong> Now, once you've done some toggle grippering and run the command to get the bot into ready pose, run planning.launch.py and keep your hand on the E-stop!! Start throwing balls and see what happens :)</li>
         </ol>
       </div>
     </section>
