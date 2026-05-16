@@ -174,8 +174,8 @@
             <p>We tried the Intel RealSense for its depth output, but it was limited to 30 fps in depth mode and produced noisy readings for a small, fast-moving ball. We switched to a Logitech C922 running at 1280x720 at 60 fps, trading built-in depth for framerate. Depth was then estimated in software using the known physical size of the ball and how many pixels it occupied in the HSV mask.</p>
           </div>
           <div class="tradeoff">
-            <h4>[Trade-off C]</h4>
-            <p>[Chose X over Y because…]</p>
+            <h4>Restricted workspace over collision-aware planning</h4>
+            <p>Rather than running careful motion planning to avoid obstacles, we defined a restricted workspace and simply rejected any target outside it. This means the arm never tries to go somewhere unsafe, but without any of the planning overhead. Speed mattered more than graceful constraint handling here.</p>
           </div>
         </div>
       </div>
@@ -269,7 +269,7 @@
 
       <div class="block">
         <h3>What it did</h3>
-        <p>[PLACEHOLDER: Summarize what the system actually achieved. Be specific.]</p>
+        <p>The system successfully detects a green stress ball being tossed in front of the robot, estimates where the ball is heading, and moves the arm to the predicted interception point in time to block it. The full pipeline runs in real time: HSV detection feeds into trajectory estimation, which publishes an interception target, and the arm moves there.</p>
 
         <div class="metric-row">
           <div class="metric">
