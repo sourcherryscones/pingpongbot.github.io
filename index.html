@@ -164,15 +164,14 @@
 
       <div class="block">
         <h3>Trade-offs</h3>
-        <p>[PLACEHOLDER: What did you give up to gain something else? E.g., vision FPS vs. latency, model-based control vs. learned policies, simulation fidelity vs. iteration speed.]</p>
         <div class="tradeoff-grid">
           <div class="tradeoff">
-            <h4>[Trade-off A]</h4>
-            <p>[Chose X over Y because…]</p>
+            <h4>HSV over YOLO for ball detection</h4>
+            <p>We considered using a YOLO model for ball detection but ruled it out due to latency. To estimate a trajectory, we need a high density of detections in a short window of time. CV models running on the lab's desktop GPUs would not give us the speed we needed.</p>
           </div>
           <div class="tradeoff">
-            <h4>[Trade-off B]</h4>
-            <p>[Chose X over Y because…]</p>
+            <h4>Logitech C922 over Intel RealSense</h4>
+            <p>We tried the Intel RealSense for its depth output, but it was limited to 30 fps in depth mode and produced noisy readings for a small, fast-moving ball. We switched to a Logitech C922 running at 1280x720 at 60 fps, trading built-in depth for framerate. Depth was then estimated in software using the known physical size of the ball and how many pixels it occupied in the HSV mask.</p>
           </div>
           <div class="tradeoff">
             <h4>[Trade-off C]</h4>
