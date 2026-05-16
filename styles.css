@@ -2,14 +2,14 @@
    Base / reset
    ============================================================ */
 :root {
-  --bg: #fafaf7;
-  --bg-elev: #ffffff;
-  --ink: #14140f;
-  --ink-soft: #4a4a45;
-  --ink-muted: #8a8a82;
-  --rule: #e8e6df;
-  --accent: #e85d2c;            /* table-tennis orange */
-  --accent-soft: #fff1ea;
+  --bg: #0d0d0d;
+  --bg-elev: #161616;
+  --ink: #f0ede8;
+  --ink-soft: #a8a49d;
+  --ink-muted: #5a5750;
+  --rule: #242420;
+  --accent: #e85d2c;
+  --accent-soft: #1f1108;
   --max: 1080px;
   --gutter: 28px;
   --radius: 6px;
@@ -37,7 +37,7 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
 h1, h2, h3, h4 { font-weight: 600; line-height: 1.25; letter-spacing: -0.01em; }
 p { margin: 0 0 1rem; }
-code { font-family: var(--mono); font-size: 0.92em; background: var(--accent-soft); padding: 1px 6px; border-radius: 4px; }
+code { font-family: var(--mono); font-size: 0.92em; background: var(--accent-soft); padding: 1px 6px; border-radius: 4px; color: var(--accent); }
 
 /* ============================================================
    Sticky nav
@@ -46,9 +46,9 @@ code { font-family: var(--mono); font-size: 0.92em; background: var(--accent-sof
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(250, 250, 247, 0.85);
-  backdrop-filter: saturate(180%) blur(8px);
-  -webkit-backdrop-filter: saturate(180%) blur(8px);
+  background: rgba(13, 13, 13, 0.85);
+  backdrop-filter: saturate(180%) blur(12px);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
   border-bottom: 1px solid var(--rule);
 }
 .nav-inner {
@@ -73,7 +73,12 @@ code { font-family: var(--mono); font-size: 0.92em; background: var(--accent-sof
 .nav-brand .dot {
   width: 10px; height: 10px; border-radius: 50%;
   background: var(--accent);
-  box-shadow: 0 0 0 3px var(--accent-soft);
+  box-shadow: 0 0 0 3px var(--accent-soft), 0 0 12px var(--accent);
+  animation: pulse 2.4s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 3px var(--accent-soft), 0 0 8px var(--accent); }
+  50%       { box-shadow: 0 0 0 5px var(--accent-soft), 0 0 20px var(--accent); }
 }
 .nav-links {
   display: flex;
@@ -84,10 +89,7 @@ code { font-family: var(--mono); font-size: 0.92em; background: var(--accent-sof
   padding: 0;
   font-size: 14px;
 }
-.nav-links a {
-  color: var(--ink-soft);
-  font-weight: 500;
-}
+.nav-links a { color: var(--ink-soft); font-weight: 500; }
 .nav-links a:hover { color: var(--ink); text-decoration: none; }
 .nav-links a.active { color: var(--accent); }
 
@@ -117,6 +119,10 @@ code { font-family: var(--mono); font-size: 0.92em; background: var(--accent-sof
   margin: 0 0 16px;
   letter-spacing: -0.025em;
   line-height: 1.1;
+  background: linear-gradient(120deg, var(--ink) 0%, var(--accent) 60%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 .hero-subtitle {
   font-size: 1.15rem;
@@ -133,7 +139,9 @@ code { font-family: var(--mono); font-size: 0.92em; background: var(--accent-sof
   border: 1px solid var(--rule);
   border-radius: 999px;
   color: var(--ink-soft);
+  transition: border-color 120ms, color 120ms;
 }
+.chip:hover { border-color: var(--accent); color: var(--accent); }
 .hero-figure { color: var(--ink-muted); }
 .hero-figure svg { width: 100%; height: auto; display: block; }
 
@@ -165,11 +173,7 @@ code { font-family: var(--mono); font-size: 0.92em; background: var(--accent-sof
 }
 .block { margin-bottom: 40px; }
 .block:last-child { margin-bottom: 0; }
-.block h3 {
-  font-size: 1.15rem;
-  margin: 0 0 12px;
-  color: var(--ink);
-}
+.block h3 { font-size: 1.15rem; margin: 0 0 12px; color: var(--ink); }
 .block h4 {
   font-size: 0.98rem;
   margin: 24px 0 10px;
@@ -182,10 +186,7 @@ code { font-family: var(--mono); font-size: 0.92em; background: var(--accent-sof
 /* ============================================================
    Figures & images
    ============================================================ */
-.figure {
-  margin: 18px 0 8px;
-  padding: 0;
-}
+.figure { margin: 18px 0 8px; padding: 0; }
 .figure-placeholder {
   display: flex;
   align-items: center;
@@ -215,10 +216,7 @@ code { font-family: var(--mono); font-size: 0.92em; background: var(--accent-sof
 /* ============================================================
    Criteria & steps
    ============================================================ */
-.criteria, .steps {
-  margin: 12px 0;
-  padding-left: 1.2rem;
-}
+.criteria, .steps { margin: 12px 0; padding-left: 1.2rem; }
 .criteria li, .steps li { margin-bottom: 10px; }
 
 /* ============================================================
@@ -235,29 +233,16 @@ code { font-family: var(--mono); font-size: 0.92em; background: var(--accent-sof
   border: 1px solid var(--rule);
   border-radius: var(--radius);
   padding: 18px 18px 4px;
+  transition: border-color 120ms;
 }
-.tradeoff h4 {
-  margin: 0 0 6px;
-  font-size: 0.95rem;
-  text-transform: none;
-  letter-spacing: 0;
-  color: var(--ink);
-}
+.tradeoff:hover { border-color: var(--accent); }
+.tradeoff h4 { margin: 0 0 6px; font-size: 0.95rem; text-transform: none; letter-spacing: 0; color: var(--ink); }
 
 /* ============================================================
    Parts table
    ============================================================ */
-.parts {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 8px;
-  font-size: 0.95rem;
-}
-.parts th, .parts td {
-  text-align: left;
-  padding: 10px 12px;
-  border-bottom: 1px solid var(--rule);
-}
+.parts { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 0.95rem; }
+.parts th, .parts td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--rule); }
 .parts th {
   color: var(--ink-muted);
   font-weight: 600;
@@ -265,6 +250,7 @@ code { font-family: var(--mono); font-size: 0.92em; background: var(--accent-sof
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
+.parts tr:hover td { background: var(--bg-elev); }
 
 /* ============================================================
    Metrics
@@ -280,18 +266,11 @@ code { font-family: var(--mono); font-size: 0.92em; background: var(--accent-sof
   border: 1px solid var(--rule);
   border-radius: var(--radius);
   padding: 22px 20px;
+  transition: border-color 120ms;
 }
-.metric-num {
-  font-size: 2rem;
-  font-weight: 600;
-  color: var(--accent);
-  letter-spacing: -0.02em;
-}
-.metric-label {
-  margin-top: 4px;
-  color: var(--ink-soft);
-  font-size: 0.9rem;
-}
+.metric:hover { border-color: var(--accent); }
+.metric-num { font-size: 2rem; font-weight: 600; color: var(--accent); letter-spacing: -0.02em; }
+.metric-label { margin-top: 4px; color: var(--ink-soft); font-size: 0.9rem; }
 
 /* ============================================================
    Video
@@ -303,19 +282,10 @@ code { font-family: var(--mono); font-size: 0.92em; background: var(--accent-sof
   background: #000;
   border-radius: var(--radius);
   overflow: hidden;
+  border: 1px solid var(--rule);
 }
-.video-wrap iframe {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
-.caption {
-  margin-top: 8px;
-  font-size: 0.85rem;
-  color: var(--ink-muted);
-}
+.video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.caption { margin-top: 8px; font-size: 0.85rem; color: var(--ink-muted); }
 
 /* ============================================================
    Team
@@ -330,7 +300,9 @@ code { font-family: var(--mono); font-size: 0.92em; background: var(--accent-sof
   border: 1px solid var(--rule);
   border-radius: var(--radius);
   padding: 22px;
+  transition: border-color 120ms, transform 120ms;
 }
+.member:hover { border-color: var(--accent); transform: translateY(-2px); }
 .member .avatar {
   width: 100%;
   aspect-ratio: 1 / 1;
@@ -343,6 +315,7 @@ code { font-family: var(--mono); font-size: 0.92em; background: var(--accent-sof
   font-family: var(--mono);
   font-size: 12px;
   margin-bottom: 14px;
+  border: 1px solid var(--rule);
 }
 .member h3 { margin: 0 0 2px; font-size: 1.05rem; }
 .member .role {
@@ -353,16 +326,8 @@ code { font-family: var(--mono); font-size: 0.92em; background: var(--accent-sof
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
-.member .bio {
-  font-size: 0.93rem;
-  color: var(--ink-soft);
-  margin-bottom: 10px;
-}
-.member .contributions {
-  font-size: 0.88rem;
-  color: var(--ink);
-  margin: 0;
-}
+.member .bio { font-size: 0.93rem; color: var(--ink-soft); margin-bottom: 10px; }
+.member .contributions { font-size: 0.88rem; color: var(--ink); margin: 0; }
 
 /* ============================================================
    Resource cards
@@ -381,29 +346,14 @@ code { font-family: var(--mono); font-size: 0.92em; background: var(--accent-sof
   color: var(--ink);
   transition: border-color 120ms ease, transform 120ms ease;
 }
-.resource:hover {
-  border-color: var(--accent);
-  text-decoration: none;
-  transform: translateY(-1px);
-}
-.resource h3 {
-  margin: 0 0 6px;
-  font-size: 1rem;
-  color: var(--accent);
-}
-.resource p {
-  margin: 0;
-  font-size: 0.9rem;
-  color: var(--ink-soft);
-}
+.resource:hover { border-color: var(--accent); text-decoration: none; transform: translateY(-2px); }
+.resource h3 { margin: 0 0 6px; font-size: 1rem; color: var(--accent); }
+.resource p { margin: 0; font-size: 0.9rem; color: var(--ink-soft); }
 
 /* ============================================================
    Footer
    ============================================================ */
-.site-footer {
-  border-top: 1px solid var(--rule);
-  margin-top: 40px;
-}
+.site-footer { border-top: 1px solid var(--rule); margin-top: 40px; }
 .footer-inner {
   max-width: var(--max);
   margin: 0 auto;
