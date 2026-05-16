@@ -176,6 +176,10 @@
             <p>We tried the Intel RealSense for its depth output, but it was limited to 30 fps in depth mode and produced noisy readings for a small, fast-moving ball. We switched to a Logitech C922 running at 1280x720 at 60 fps, trading built-in depth for framerate. Depth was then estimated in software using the known physical size of the ball and how many pixels it occupied in the HSV mask.</p>
           </div>
           <div class="tradeoff">
+            <h4>Camera positioning</h4>
+            <p>Camera placement directly determines how many usable detections we get and how accurate each one is. Too far and the ball occupies too few pixels for reliable depth estimation. Too close and the trajectory is only partially visible. We settled on a position that consistently yields 23 to 27 detections across the first half of the ball's flight. The estimator commits after 17 points: enough to produce a stable fit, and early enough that the arm has time to reach the intercept point before the ball does.</p>
+          </div>
+          <div class="tradeoff">
             <h4>Restricted workspace over collision-aware planning</h4>
             <p>Rather than running careful motion planning to avoid obstacles, we defined a restricted workspace and simply rejected any target outside it. This means the arm never tries to go somewhere unsafe, but without any of the planning overhead. Speed mattered more than graceful constraint handling here.</p>
           </div>
