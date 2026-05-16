@@ -95,7 +95,27 @@
 
       <div class="block">
         <h3>Why this is interesting</h3>
-        <p>Hitting a relatively small object, at high speeds, in real time, is pretty hard. In order to make this project work, we needed the camera, robot, and </p>
+        <p>Hitting a relatively small object, at high speeds, in real time, is pretty hard. The primary challenges we had are best described by the following series of questions, which we encountered and answered over the course of the project:
+          <ol>
+            <li>
+              How do you detect a fast-moving ball at all using the camera? 
+            </li>
+            <li>
+              Once you detect the ball, how can you accurately estimate the ball's position in 3D space, accounting for factors like motion blur? 
+            </li>
+            <li>
+              (Later on, the challenge proved to be in trying to workshop an approach to estimate depth without a depth sensor.)
+            </li>
+            <li>
+              Once all of that's finally been ironed out, how can you ensure you have enough high-quality frames to be able to estimate a trajectory? How quickly does that need to happen?
+            </li>
+            <li>
+              Since there is error inherent to all the steps before trajectory estimation, how can we mathematically correct for that in the way that we choose to estimate the trajectory? Can we "engineer our way" around the hardware?
+            </li>
+            <li>
+              How can we change the way that we are estimating trajectories to account for the fact that we need time for the controller to move the paddle into a place where it can intercept the ball?
+            </li>
+          </ol></p>
       </div> 
 
       <div class="block">
