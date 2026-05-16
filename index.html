@@ -188,7 +188,7 @@
 
       <div class="block">
         <h3>Reliability</h3>
-        <p>[PLACEHOLDER]</p>
+        <p></p>
       </div>
     </section>
 
@@ -224,10 +224,9 @@
           </thead>
           <tbody>
             <tr><td>Robot arm</td><td>Universal Robots UR7e</td><td>Primary manipulator</td></tr>
-            <tr><td>[Camera]</td><td>[Model]</td><td>[Ball tracking]</td></tr>
-            <tr><td>[Paddle / mount]</td><td>[Custom CAD]</td><td>[End-effector]</td></tr>
-            <tr><td>[Compute]</td><td>[Model]</td><td>[Vision / control]</td></tr>
-            <tr><td>[Add rows as needed]</td><td></td><td></td></tr>
+            <tr><td>Camera</td><td>Logitech C922</td><td>Ball tracking</td></tr>
+            <tr><td>Ping-pong paddle</td><td>Generic ping-pong paddle</td><td>Intercept ball trajectory</td></tr>
+            <tr><td>PC</td><td>Linux</td><td>Compute HSV color mask and IK for ball trajectory</td></tr>
           </tbody>
         </table>
       </div>
@@ -235,7 +234,9 @@
       <!-- Software -->
       <div class="block">
         <h3>Software</h3>
-        <p>[PLACEHOLDER: Describe each major software component — perception pipeline, trajectory planner, controller, ROS 2 nodes, simulation. Mention launch files, URDFs, and how they interconnect.]</p>
+        <p>First we have the camera package which controlls and publishes camera frames to image_compressed. Then we has perception package which receives image applies HSV mask and computes estimated
+          trajectory and publishes to InterceptTarget. Finally, we have planning package which computes IK and sends joing configuration to UR7e arm to move to interception target.
+        </p>
 
         <figure class="figure">
           <img src="images/flowchart.png" alt="Full hardware setup overview showing the UR7e arm, camera tripod, and ping-pong table." class="hardware-img" />
